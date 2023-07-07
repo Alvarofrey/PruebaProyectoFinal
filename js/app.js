@@ -145,6 +145,13 @@ class Carrito {
       boton.onclick = (event) => {
         event.preventDefault();
         this.quitar(Number(boton.dataset.id));
+        Swal.fire({
+          position: 'top',
+          icon: 'warning',
+          title: 'Su Producto fue quitado del carrito',
+          showConfirmButton: false,
+          timer: 1000
+        })
       };
     }
     // Actualizamos variables carrito
@@ -174,7 +181,7 @@ const spanCantidadProductos = document.querySelector("#cantidadProductos");
 const spanTotalCarrito = document.querySelector("#totalCarrito");
 const formBuscar = document.querySelector("#formBuscar");
 const inputBuscar = document.querySelector("#inputBuscar");
-
+const botonesAgregar = document.querySelectorAll(".btnAgregar");
 // Llamamos a la función
 cargarProductos(bd.traerRegistros());
 
@@ -200,6 +207,13 @@ function cargarProductos(productos) {
       const id = Number(boton.dataset.id);
       const producto = bd.registroPorId(id);
       carrito.agregar(producto);
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Su Producto fue agregado al carrito',
+        showConfirmButton: false,
+        timer: 1000
+      })
     });
   }
 }
@@ -224,7 +238,9 @@ botonCarrito.addEventListener("click", () => {
   document.querySelector("section").classList.toogle("ocultar");
 
 });
+// botonesAgregar.addEventListener("click", () => {
+//   Swal.fire('Su Producto Fue Agregado al Carrito')
 
 
 
-
+// });
